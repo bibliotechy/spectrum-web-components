@@ -45,6 +45,7 @@ textarea {
 :host([focused]) .input {
     caret-color: var(--swc-test-caret-color);
     forced-color-adjust: var(--swc-test-forced-color-adjust);
+    border-width: var(--swc-textfield-border-width);
 }
 
 :host([grows]) .input {
