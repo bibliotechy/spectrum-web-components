@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import type { Picker } from '..';
+import type { Picker } from '@spectrum-web-components/picker';
 
 import type { OverlayOpenCloseDetail } from '@spectrum-web-components/overlay';
 import type { MenuItem } from '@spectrum-web-components/menu';

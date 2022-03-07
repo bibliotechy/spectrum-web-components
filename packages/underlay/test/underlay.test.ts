@@ -12,8 +12,8 @@ governing permissions and limitations under the License.
 
 import { elementUpdated, expect, fixture, html } from '@open-wc/testing';
 
-import '../sp-underlay.js';
-import { Underlay } from '../';
+import '@spectrum-web-components/underlay/sp-underlay.js';
+import { Underlay } from '@spectrum-web-components/underlay';
 
 describe('Underlay', () => {
     it('loads default underlay accessibly', async () => {

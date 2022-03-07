@@ -20,8 +20,8 @@ import { Picker } from '@spectrum-web-components/picker';
 import '@spectrum-web-components/menu/sp-menu.js';
 import '@spectrum-web-components/menu/sp-menu-item.js';
 
-import '../sp-field-label.js';
-import { FieldLabel } from '..';
+import '@spectrum-web-components/field-label/sp-field-label.js';
+import { FieldLabel } from '@spectrum-web-components/field-label';
 
 describe('FieldLabel', () => {
     it('loads default field-label accessibly', async () => {

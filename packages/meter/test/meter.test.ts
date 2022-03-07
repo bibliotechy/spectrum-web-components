@@ -12,8 +12,8 @@ governing permissions and limitations under the License.
 
 import { elementUpdated, expect, fixture, html } from '@open-wc/testing';
 
-import '../sp-meter.js';
-import { Meter } from '..';
+import '@spectrum-web-components/meter/sp-meter.js';
+import { Meter } from '@spectrum-web-components/meter';
 
 describe('Meter', () => {
     it('loads default meter accessibly', async () => {

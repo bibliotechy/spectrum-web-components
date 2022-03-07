@@ -12,8 +12,8 @@ governing permissions and limitations under the License.
 
 import { elementUpdated, expect, fixture, html } from '@open-wc/testing';
 
-import '../sp-coachmark.js';
-import { Coachmark } from '../';
+import '@spectrum-web-components/coachmark/sp-coachmark.js';
+import { Coachmark } from '@spectrum-web-components/coachmark';
 
 describe('Coachmark', () => {
     it('loads default coachmark accessibly', async () => {

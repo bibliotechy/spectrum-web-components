@@ -587,11 +587,15 @@ export class HandleController implements Controller {
                         previous.value,
                         result.range.min
                     );
-                    /* c8 ignore next 5 */
-                } else {
-                    console.warn(
-                        'First slider handle cannot have attribute min="previous"'
-                    );
+                }
+                if (window.__swc.DEBUG) {
+                    if (!previous) {
+                        window.__swc.issueWarning(
+                            'slider:api:default',
+                            'First slider handle cannot have attribute min="previous"',
+                            'https://opensource.adobe.com/spectrum-web-components/components/slider-handle/#multi-handle-slider-with-ordered-handles'
+                        );
+                    }
                 }
             }
             if (handle.max === 'next') {
@@ -604,11 +608,15 @@ export class HandleController implements Controller {
                         }
                     }
                     result.clamp.max = Math.min(next.value, result.range.max);
-                    /* c8 ignore next 5 */
-                } else {
-                    console.warn(
-                        'Last slider handle cannot have attribute max="next"'
-                    );
+                }
+                if (window.__swc.DEBUG) {
+                    if (!next) {
+                        window.__swc.issueWarning(
+                            'slider:api:default',
+                            'Last slider handle cannot have attribute max="next"',
+                            'This needs a URL!'
+                        );
+                    }
                 }
             }
             return result;

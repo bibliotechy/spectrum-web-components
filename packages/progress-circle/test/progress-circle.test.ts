@@ -12,8 +12,8 @@ governing permissions and limitations under the License.
 
 import { elementUpdated, expect, fixture, html } from '@open-wc/testing';
 
-import '../sp-progress-circle.js';
-import { ProgressCircle } from '..';
+import '@spectrum-web-components/progress-circle/sp-progress-circle.js';
+import { ProgressCircle } from '@spectrum-web-components/progress-circle';
 
 describe('ProgressCircle', () => {
     it('loads', async () => {

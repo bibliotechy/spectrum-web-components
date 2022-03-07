@@ -163,3 +163,35 @@ export function SpectrumMixin<T extends Constructor<ReactiveElement>>(
 }
 
 export class SpectrumElement extends SpectrumMixin(LitElement) {}
+
+if (window.__swc.DEBUG) {
+    window.__swc = {
+        ...window.__swc,
+        issuedWarnings: new Set(),
+        issueWarning: (id, warning, url, issues): void => {
+            if (window.__swc.issuedWarnings.has(id)) return;
+            window.__swc.issuedWarnings.add(id);
+            const [tagName, type, level] = id.split(':') as [
+                ElementLocalName,
+                WarningType,
+                WarningLevel
+            ];
+            if (window.__swc?.ignoreWarningLocalNames?.[tagName]) return;
+            if (window.__swc?.ignoreWarningTypes?.[type]) return;
+            if (window.__swc?.ignoreWarningLevels?.[level]) return;
+            let listedIssues = '';
+            if (issues && issues.length) {
+                issues.unshift('');
+                listedIssues = issues.join('\n    -') + '\n';
+            }
+            const intro = level === 'deprecation' ? 'DEPRECATION NOTICE: ' : '';
+            console.warn(intro + warning + '\n' + listedIssues + '\n' + url);
+        },
+    };
+
+    window.__swc.issueWarning(
+        'base:default:default',
+        'Spectrum Web Components is in dev mode. Not recommended for production!',
+        'https://opensource.adobe.com/spectrum-web-components/dev-mode/'
+    );
+}

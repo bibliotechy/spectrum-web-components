@@ -12,7 +12,7 @@ governing permissions and limitations under the License.
 
 import { html, TemplateResult } from '@spectrum-web-components/base';
 
-import '../sp-progress-bar.js';
+import '@spectrum-web-components/progress-bar/sp-progress-bar.js';
 
 export default {
     title: 'Progress Bar',
@@ -22,6 +22,12 @@ export default {
 export const label = (): TemplateResult => {
     return html`
         <sp-progress-bar label="Loading" progress="50"></sp-progress-bar>
+    `;
+};
+
+export const inaccessible = (): TemplateResult => {
+    return html`
+        <sp-progress-bar progress="50"></sp-progress-bar>
     `;
 };
 

@@ -12,8 +12,8 @@ governing permissions and limitations under the License.
 
 import { elementUpdated, expect, fixture, html } from '@open-wc/testing';
 
-import '../sp-divider.js';
-import { Divider } from '..';
+import '@spectrum-web-components/divider/sp-divider.js';
+import { Divider } from '@spectrum-web-components/divider';
 
 describe('Divider', () => {
     it('loads default divider accessibly', async () => {

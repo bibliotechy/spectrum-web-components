@@ -12,8 +12,8 @@ governing permissions and limitations under the License.
 
 import { elementUpdated, expect, fixture, html } from '@open-wc/testing';
 
-import '../sp-help-text.js';
-import { HelpText } from '..';
+import '@spectrum-web-components/help-text/sp-help-text.js';
+import { HelpText } from '@spectrum-web-components/help-text';
 
 describe('HelpText', () => {
     it('loads default help-text accessibly', async () => {

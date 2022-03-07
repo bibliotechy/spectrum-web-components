@@ -51,7 +51,7 @@ This examples uses the `"range"` variant along with two handles to create a rang
 
 ## Multi-handle Slider with Ordered Handles
 
-For slider handles that have the same numeric range, you can specify `min="previous"` or `max="next"` to constrain handles by the values of their neighbours.
+For slider handles that have the same numeric range, you can specify `min="previous"` or `max="next"` to constrain handles by the values of their `previous/nextElementSiblings`.
 
 ```html
 <sp-slider step="1" min="0" max="255">

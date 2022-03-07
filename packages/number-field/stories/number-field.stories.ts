@@ -12,10 +12,10 @@ governing permissions and limitations under the License.
 
 import { html, TemplateResult } from '@spectrum-web-components/base';
 
-import '../sp-number-field.js';
+import '@spectrum-web-components/number-field/sp-number-field.js';
 import '@spectrum-web-components/field-label/sp-field-label.js';
 import { spreadProps } from '../../../test/lit-helpers.js';
-import { NumberField } from '../src/NumberField.js';
+import { NumberField } from '@spectrum-web-components/number-field/src/NumberField.js';
 
 export default {
     title: 'Number Field',

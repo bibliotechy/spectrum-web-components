@@ -51,6 +51,16 @@ export class Badge extends SizedMixin(ObserveSlotText(SpectrumElement, '')) {
     public variant: BadgeVariant = 'informative';
 
     protected override render(): TemplateResult {
+        if (window.__swc.DEBUG) {
+            if (!BADGE_VARIANTS.includes(this.variant)) {
+                window.__swc.issueWarning(
+                    'badge:api:default',
+                    `<sp-badge> elements expect the "variant" attribute to be on of the following:`,
+                    'https://opensource.adobe.com/spectrum-web-components/components/badge/#variants',
+                    [...BADGE_VARIANTS]
+                );
+            }
+        }
         return html`
             <slot name="icon" ?icon-only=${!this.slotHasContent}></slot>
             <div id="label">

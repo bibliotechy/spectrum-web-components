@@ -11,7 +11,7 @@ governing permissions and limitations under the License.
 */
 import { html, TemplateResult } from '@spectrum-web-components/base';
 
-import '../sp-card.js';
+import '@spectrum-web-components/card/sp-card.js';
 import { landscape, portrait } from './images';
 import '@spectrum-web-components/icons-workflow/icons/sp-icon-file-txt.js';
 import '@spectrum-web-components/textfield/sp-textfield.js';

@@ -286,10 +286,15 @@ export class PickerBase extends SizedMixin(Focusable) {
         this.popover = this.popoverFragment.children[0] as Popover;
         this.optionsMenu = this.popover.children[1] as Menu;
 
-        if (deprecatedMenu) {
-            console.warn(
-                `Deprecation Notice: You no longer need to provide an sp-menu child to ${this.tagName.toLowerCase()}. Any styling or attributes on the sp-menu will be ignored.`
-            );
+        if (window.__swc.DEBUG) {
+            if (deprecatedMenu) {
+                const { localName } = this;
+                window.__swc.issueWarning(
+                    `${localName}:api:deprecation`,
+                    `You no longer need to provide an sp-menu child to ${localName}. Any styling or attributes on the sp-menu will be ignored.`,
+                    'https://opensource.adobe.com/spectrum-web-components/components/picker/#sizes'
+                );
+            }
         }
     }
 

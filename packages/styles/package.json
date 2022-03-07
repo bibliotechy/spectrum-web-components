@@ -20,7 +20,11 @@
     "module": "src/spectrum-base.css.js",
     "type": "module",
     "exports": {
-        ".": "./src/spectrum-base.css.js",
+        ".": {
+            "development": "./src/index.dev.js",
+            "default": "./src/index.js"
+        },
+        "./package.json": "./package.json",
         "./all-large-dark.css": "./all-large-dark.css",
         "./all-large-darkest.css": "./all-large-darkest.css",
         "./all-large-light.css": "./all-large-light.css",
@@ -30,25 +34,41 @@
         "./all-medium-light.css": "./all-medium-light.css",
         "./all-medium-lightest.css": "./all-medium-lightest.css",
         "./core-global.css": "./core-global.css",
+        "./express/core-global.css": "./express/core-global.css",
         "./fonts.css": "./fonts.css",
         "./scale-large.css": "./scale-large.css",
+        "./express/scale-large.css": "./express/scale-large.css",
         "./scale-medium.css": "./scale-medium.css",
+        "./express/scale-medium.css": "./express/scale-medium.css",
         "./theme-dark.css": "./theme-dark.css",
+        "./express/theme-dark.css": "./express/theme-dark.css",
         "./theme-darkest.css": "./theme-darkest.css",
+        "./express/theme-darkest.css": "./express/theme-darkest.css",
         "./theme-light.css": "./theme-light.css",
+        "./express/theme-light.css": "./express/theme-light.css",
         "./theme-lightest.css": "./theme-lightest.css",
+        "./express/theme-lightest.css": "./express/theme-lightest.css",
         "./typography.css": "./typography.css",
-        "./body": "./body.js",
-        "./body.js": "./body.js",
-        "./code": "./code.js",
-        "./code.js": "./code.js",
-        "./detail": "./detail.js",
-        "./detail.js": "./detail.js",
-        "./heading": "./heading.js",
-        "./heading.js": "./heading.js",
-        "./typography": "./typography.js",
-        "./typography.js": "./typography.js",
-        "./src/*": "./src/*"
+        "./body.js": {
+            "development": "./body.dev.js",
+            "default": "./body.js"
+        },
+        "./code.js": {
+            "development": "./code.dev.js",
+            "default": "./code.js"
+        },
+        "./detail.js": {
+            "development": "./detail.dev.js",
+            "default": "./detail.js"
+        },
+        "./heading.js": {
+            "development": "./heading.dev.js",
+            "default": "./heading.js"
+        },
+        "./typography.js": {
+            "development": "./typography.dev.js",
+            "default": "./typography.js"
+        }
     },
     "scripts": {
         "test": "echo \"Error: run tests from mono-repo root.\" && exit 1"

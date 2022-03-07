@@ -60,6 +60,7 @@ governing permissions and limitations under the License.
 
 pre {
     grid-area: 1/1/1/1;
+    padding-bottom: calc(0.75rem + var(--spectrum-global-dimension-size-400));
 }
 
 .copy-holder {

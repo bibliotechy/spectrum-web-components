@@ -11,8 +11,8 @@ governing permissions and limitations under the License.
 */
 import { html, TemplateResult } from '@spectrum-web-components/base';
 
-import '../sp-radio.js';
-import '../sp-radio-group.js';
+import '@spectrum-web-components/radio/sp-radio.js';
+import '@spectrum-web-components/radio/sp-radio-group.js';
 import { spreadProps } from '../../../test/lit-helpers.js';
 
 export default {
