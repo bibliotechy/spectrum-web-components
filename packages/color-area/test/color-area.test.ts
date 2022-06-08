@@ -24,6 +24,7 @@ import '../sp-color-area.js';
 import { ColorArea } from '..';
 import { sendKeys } from '@web/test-runner-commands';
 import { spy } from 'sinon';
+import { ColorHandle } from '@spectrum-web-components/color-handle';
 
 describe('ColorArea', () => {
     it('loads default color-area accessibly', async () => {
@@ -123,6 +124,25 @@ describe('ColorArea', () => {
 
         expect(inputX?.getAttribute('aria-label')).to.equal('something custom');
         expect(inputY?.getAttribute('aria-label')).to.equal('something custom');
+    });
+    it('accepts `hue` values', async () => {
+        const el = await fixture<ColorArea>(
+            html`
+                <sp-color-area></sp-color-area>
+            `
+        );
+
+        await elementUpdated(el);
+
+        const { handle } = el as unknown as { handle: ColorHandle };
+
+        expect(handle.color).to.equal('hsl(0, 100%, 50%)');
+
+        el.hue = 125;
+
+        await elementUpdated(el);
+
+        expect(handle.color).to.equal('hsl(125, 100%, 50%)');
     });
     it('accepts "color" values as hsl', async () => {
         const el = await fixture<ColorArea>(
