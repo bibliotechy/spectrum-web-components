@@ -31,28 +31,9 @@ export interface Item extends Record<string, unknown> {
     date: number;
 }
 
-export function makeItemsTwo(count: number): Item[] {
+export function makeItems(count: number): Item[] {
     const total = count;
     const items: Item[] = [];
-    while (count) {
-        count--;
-        items.push({
-            name: String(total - count),
-            date: count,
-        });
-    }
-    return items;
-}
-
-export function makeItems(count: number): {
-    name: string;
-    date: number;
-}[] {
-    const total = count;
-    const items: {
-        name: string;
-        date: number;
-    }[] = [];
     while (count) {
         count--;
         items.push({

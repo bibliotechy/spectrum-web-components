@@ -23,13 +23,7 @@ import '../sp-table-head-cell.js';
 import '../sp-table-body.js';
 import '../sp-table-row.js';
 import '../sp-table-cell.js';
-import {
-    Item,
-    makeItems,
-    makeItemsTwo,
-    Properties,
-    renderItem,
-} from './index.js';
+import { Item, makeItems, Properties, renderItem } from './index.js';
 import type { SortedEventDetails } from '../src/TableHeadCell.js';
 import { RangeChangedEvent, Table } from '../src/Table.js';
 
@@ -56,6 +50,7 @@ export default {
     },
     args: {
         selects: '',
+        selected: [],
     },
 };
 
@@ -140,7 +135,7 @@ class VirtualTable extends SpectrumElement {
 
 customElements.define('virtual-table', VirtualTable);
 
-const virtualItems = makeItemsTwo(50);
+const virtualItems = makeItems(50);
 
 export const virtualized = (): TemplateResult => {
     return html`
@@ -201,19 +196,11 @@ virtualizedSingle.args = {
 };
 
 export const virtualizedMultiple = (args: Properties): TemplateResult => {
-    const renderItem = (item: Item, index: number): TemplateResult => {
-        return html`
-            <sp-table-cell>Rowsaa Item Alpha ${item.name}</sp-table-cell>
-            <sp-table-cell>Row Item Alpha ${item.date}</sp-table-cell>
-            <sp-table-cell>Row Item Alpha ${index}</sp-table-cell>
-        `;
-    };
-
     return html`
         <sp-table
             size="m"
             selects=${args.selects}
-            .selected=${['0', '48']}
+            .selected=${args.selected}
             @change=${({ target }: Event & { target: Table }) => {
                 const next = target.nextElementSibling as HTMLDivElement;
                 next.textContent = `Selected: ${JSON.stringify(
@@ -240,6 +227,7 @@ export const virtualizedMultiple = (args: Properties): TemplateResult => {
 };
 virtualizedMultiple.args = {
     selects: 'multiple',
+    selected: ['0', '48'],
 };
 
 export const virtualizedCustomValue = (args: Properties): TemplateResult => {
@@ -247,7 +235,7 @@ export const virtualizedCustomValue = (args: Properties): TemplateResult => {
         <sp-table
             size="m"
             selects=${args.selects}
-            .selected=${['0', '48', 'applied-47']}
+            .selected=${args.selected}
             @change=${args.onChange}
             .items=${virtualItems}
             .itemValue=${(item: Item) => 'applied-' + item.date}
@@ -265,6 +253,7 @@ export const virtualizedCustomValue = (args: Properties): TemplateResult => {
     `;
 };
 virtualizedCustomValue.args = {
+    selected: ['0', '48', 'applied-47'],
     selects: 'multiple',
     onChange: ({ target }: Event & { target: Table }) => {
         const next = target.nextElementSibling as HTMLDivElement;

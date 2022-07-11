@@ -29,8 +29,9 @@ import {
     virtualized,
     virtualizedCustomValue,
     virtualizedMultiple,
+    virtualizedSingle,
 } from '../stories/table-virtualized.stories.js';
-import { makeItemsTwo, Properties, renderItem } from '../stories/index.js';
+import { makeItems, Properties, renderItem } from '../stories/index.js';
 import { TableHeadCell } from '../src/TableHeadCell.js';
 import { sendKeys } from '@web/test-runner-commands';
 import { TableRow } from '../src/TableRow.js';
@@ -56,7 +57,7 @@ after(function () {
     window.onerror = globalErrorHandler as OnErrorEventHandler;
 });
 describe('Virtualized Table', () => {
-    const virtualItems = makeItemsTwo(50);
+    const virtualItems = makeItems(50);
 
     it('loads virtualized table accessibly', async () => {
         const el = await fixture<Table>(virtualized());
@@ -251,7 +252,6 @@ describe('Virtualized Table', () => {
 
     xit('dispatches `rangeChanged` events on Virtualized Table', async () => {
         // This test does not work. See https://github.com/lit/lit/issues/3051 for more info.
-
         const el = await fixture<Table>(html`
             <sp-table
                 selects="multiple"
@@ -324,26 +324,21 @@ describe('Virtualized Table', () => {
     });
 
     it('selects and deselects all checkboxes in Virtualized Table when clicking the TableHeadCheckboxCell', async () => {
-        const el = await fixture<Table>(html`
-            <sp-table
-                selects="multiple"
-                .selected=${['1', '47']}
-                style="height: 120px"
-                .items=${virtualItems}
-                .renderItem=${renderItem}
-                scroller?="true"
-            >
-                <sp-table-head>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                </sp-table-head>
-            </sp-table>
-        `);
+        const test = await fixture<Table>(
+            html`
+                <div>
+                    ${virtualizedMultiple(
+                        virtualizedMultiple.args as Properties
+                    )}
+                </div>
+            `
+        );
+        const el = test.querySelector('sp-table') as Table;
+
         await oneEvent(el, 'rangeChanged');
         await elementUpdated(el);
 
-        expect(el.selected).to.deep.equal(['1', '47']);
+        expect(el.selected).to.deep.equal(['0', '48']);
         expect(el.selected.length).to.equal(2);
 
         const tableHeadCheckboxCell = el.querySelector(
@@ -378,22 +373,15 @@ describe('Virtualized Table', () => {
     });
 
     it('surfaces [selects="single"] selection on Virtualized Table', async () => {
-        const el = await fixture<Table>(html`
-            <sp-table
-                selects="single"
-                .selected=${['49']}
-                style="height: 120px"
-                .items=${virtualItems}
-                .renderItem=${renderItem}
-                scroller?="true"
-            >
-                <sp-table-head>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                </sp-table-head>
-            </sp-table>
-        `);
+        const test = await fixture<Table>(
+            html`
+                <div>
+                    ${virtualizedSingle(virtualizedSingle.args as Properties)}
+                </div>
+            `
+        );
+        const el = test.querySelector('sp-table') as Table;
+
         await oneEvent(el, 'rangeChanged');
         await elementUpdated(el);
 
@@ -414,21 +402,15 @@ describe('Virtualized Table', () => {
     });
 
     it('selects via `click` while [selects="single"]', async () => {
-        const el = await fixture<Table>(html`
-            <sp-table
-                selects="single"
-                style="height: 120px"
-                .items=${makeItemsTwo(5)}
-                .renderItem=${renderItem}
-                scroller?="true"
-            >
-                <sp-table-head>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                </sp-table-head>
-            </sp-table>
-        `);
+        const test = await fixture<Table>(
+            html`
+                <div>
+                    ${virtualizedSingle(virtualizedSingle.args as Properties)}
+                </div>
+            `
+        );
+        const el = test.querySelector('sp-table') as Table;
+        el.selected = [];
         await oneEvent(el, 'rangeChanged');
         await elementUpdated(el);
 
@@ -488,21 +470,17 @@ describe('Virtualized Table', () => {
     });
 
     it('selects via `click` while [selects="multiple"] selection', async () => {
-        const el = await fixture<Table>(html`
-            <sp-table
-                selects="multiple"
-                style="height: 120px"
-                .items=${virtualItems}
-                .renderItem=${renderItem}
-                scroller?="true"
-            >
-                <sp-table-head>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                </sp-table-head>
-            </sp-table>
-        `);
+        const test = await fixture<Table>(
+            html`
+                <div>
+                    ${virtualizedMultiple(
+                        virtualizedMultiple.args as Properties
+                    )}
+                </div>
+            `
+        );
+        const el = test.querySelector('sp-table') as Table;
+        el.selected = [];
         await oneEvent(el, 'rangeChanged');
         await elementUpdated(el);
 
@@ -532,22 +510,17 @@ describe('Virtualized Table', () => {
     xit('allows .selected values to be changed by the application when [selects="multiple"]', async () => {
         // This test fails for the same reason that selectAll doesn't visually select the virtualized table rows.
         // See https://github.com/lit/lit/issues/3052
-        const el = await fixture<Table>(html`
-            <sp-table
-                selects="multiple"
-                .selected=${['1']}
-                style="height: 120px"
-                .items=${virtualItems}
-                .renderItem=${renderItem}
-                scroller?="true"
-            >
-                <sp-table-head>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                </sp-table-head>
-            </sp-table>
-        `);
+        const test = await fixture<Table>(
+            html`
+                <div>
+                    ${virtualizedMultiple(
+                        virtualizedMultiple.args as Properties
+                    )}
+                </div>
+            `
+        );
+        const el = test.querySelector('sp-table') as Table;
+        el.selected = [];
         await oneEvent(el, 'rangeChanged');
         await elementUpdated(el);
 
@@ -578,20 +551,8 @@ describe('Virtualized Table', () => {
     });
 
     it('allows [selects] to be changed by the application', async () => {
-        const el = await fixture<Table>(html`
-            <sp-table
-                style="height: 120px"
-                .items=${virtualItems}
-                .renderItem=${renderItem}
-                scroller?="true"
-            >
-                <sp-table-head>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                </sp-table-head>
-            </sp-table>
-        `);
+        const test = await fixture<HTMLElement>(virtualized());
+        const el = test.shadowRoot?.querySelector('sp-table') as Table;
         await oneEvent(el, 'rangeChanged');
         await elementUpdated(el);
 
@@ -648,21 +609,9 @@ describe('Virtualized Table', () => {
     });
 
     it('selects a user-passed value for .selected array with no [selects] specified on Virtualized `<sp-table>`, but does not allow interaction afterwards', async () => {
-        const el = await fixture<Table>(html`
-            <sp-table
-                .selected=${['0']}
-                style="height: 120px"
-                .items=${virtualItems}
-                .renderItem=${renderItem}
-                scroller?="true"
-            >
-                <sp-table-head>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                </sp-table-head>
-            </sp-table>
-        `);
+        const test = await fixture<HTMLElement>(virtualized());
+        const el = test.shadowRoot?.querySelector('sp-table') as Table;
+        el.selected = ['0'];
         await oneEvent(el, 'rangeChanged');
         await elementUpdated(el);
 
@@ -679,32 +628,26 @@ describe('Virtualized Table', () => {
     });
 
     it('ensures that virtualized elements with values in .selected are visually selected when brought into view using scrollTop', async () => {
-        const el = await fixture<Table>(html`
-            <sp-table
-                selects="multiple"
-                .selected=${['1', '47']}
-                style="height: 120px"
-                .items=${virtualItems}
-                .renderItem=${renderItem}
-                scroller?="true"
-            >
-                <sp-table-head>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                </sp-table-head>
-            </sp-table>
-        `);
+        const test = await fixture<Table>(
+            html`
+                <div>
+                    ${virtualizedMultiple(
+                        virtualizedMultiple.args as Properties
+                    )}
+                </div>
+            `
+        );
+        const el = test.querySelector('sp-table') as Table;
 
         await oneEvent(el, 'rangeChanged');
         await elementUpdated(el);
 
-        const rowOne = el.querySelector('[value="1"]') as TableRow;
+        const rowOne = el.querySelector('[value="0"]') as TableRow;
         const rowOneCheckboxCell = rowOne.querySelector(
             'sp-table-checkbox-cell'
         ) as TableCheckboxCell;
 
-        expect(el.selected).to.deep.equal(['1', '47']);
+        expect(el.selected).to.deep.equal(['0', '48']);
         expect(rowOne.selected).to.be.true;
         expect(rowOneCheckboxCell.checkbox.checked).to.be.true;
 
@@ -714,7 +657,7 @@ describe('Virtualized Table', () => {
         await nextFrame();
         await elementUpdated(el);
 
-        const unseenRow = el.querySelector('[value="47"]') as TableRow;
+        const unseenRow = el.querySelector('[value="48"]') as TableRow;
         const unseenRowCheckboxCell = unseenRow.querySelector(
             'sp-table-checkbox-cell'
         ) as TableCheckboxCell;
@@ -724,33 +667,26 @@ describe('Virtualized Table', () => {
     });
 
     it('ensures that virtualized elements with values in .selected are visually selected when brought into view using scrollToIndex', async () => {
-        const el = await fixture<Table>(html`
-            <sp-table
-                selects="multiple"
-                .selected=${['1', '47']}
-                style="height: 120px"
-                .items=${virtualItems}
-                .renderItem=${renderItem}
-                scroller?="true"
-            >
-                <sp-table-head>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                </sp-table-head>
-            </sp-table>
-        `);
+        const test = await fixture<Table>(
+            html`
+                <div>
+                    ${virtualizedMultiple(
+                        virtualizedMultiple.args as Properties
+                    )}
+                </div>
+            `
+        );
+        const el = test.querySelector('sp-table') as Table;
 
-        await elementUpdated(el);
         await oneEvent(el, 'rangeChanged');
         await elementUpdated(el);
 
-        const rowOne = el.querySelector('[value="1"]') as TableRow;
+        const rowOne = el.querySelector('[value="0"]') as TableRow;
         const rowOneCheckboxCell = rowOne.querySelector(
             'sp-table-checkbox-cell'
         ) as TableCheckboxCell;
 
-        expect(el.selected).to.deep.equal(['1', '47']);
+        expect(el.selected).to.deep.equal(['0', '48']);
         expect(rowOne.selected).to.be.true;
         expect(rowOneCheckboxCell.checkbox.checked).to.be.true;
 
@@ -760,7 +696,7 @@ describe('Virtualized Table', () => {
         await nextFrame();
         await elementUpdated(el);
 
-        const unseenRow = el.querySelector('[value="47"]') as TableRow;
+        const unseenRow = el.querySelector('[value="48"]') as TableRow;
         const unseenRowCheckboxCell = unseenRow.querySelector(
             'sp-table-checkbox-cell'
         ) as TableCheckboxCell;
@@ -770,30 +706,26 @@ describe('Virtualized Table', () => {
     });
 
     it('does not set `allSelected` to true by default on Virtualised `<sp-table>`', async () => {
-        const el = await fixture<Table>(html`
-            <sp-table
-                selects="multiple"
-                style="height: 120px"
-                .selected=${['1', '47']}
-                .items=${virtualItems}
-                .renderItem=${renderItem}
-                scroller?="true"
-            >
-                <sp-table-head>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                    <sp-table-head-cell>Column Title</sp-table-head-cell>
-                </sp-table-head>
-            </sp-table>
-        `);
+        const test = await fixture<Table>(
+            html`
+                <div>
+                    ${virtualizedMultiple(
+                        virtualizedMultiple.args as Properties
+                    )}
+                </div>
+            `
+        );
+        const el = test.querySelector('sp-table') as Table;
 
+        await oneEvent(el, 'rangeChanged');
+        await elementUpdated(el);
         await elementUpdated(el);
 
         const tableHeadCheckboxCell = el.querySelector(
             'sp-table-head sp-table-checkbox-cell'
         ) as TableCheckboxCell;
 
-        expect(el.selected).to.deep.equal(['1', '47']);
+        expect(el.selected).to.deep.equal(['0', '48']);
         expect(tableHeadCheckboxCell.checkbox.checked).to.be.false;
         expect(tableHeadCheckboxCell.checkbox.indeterminate).to.be.true;
     });
