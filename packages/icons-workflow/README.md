@@ -64,6 +64,13 @@ You can import raw icons (e.g. `AbcIcon()`) via:
 import { AbcIcon } from '@spectrum-web-components/icons-workflow/src/icons/ABC.js';
 ```
 
+_Note_: For icons with a numeral as the first character, the rendering functions are prefixed with `a`. This is because function names cannot start with a numeral. For example:
+
+```
+import { a123Icon } from '@spectrum-web-components/icons-workflow/src/icons/123.js';
+import { a3DMaterialsIcon } from '@spectrum-web-components/icons-workflow/src/icons/3DMaterials.js';
+```
+
 `@spectrum-web-components/icons-workflow` exports _all_ icons. If your build process [tree-shakes](https://rollupjs.org/guide/en/#tree-shaking) dependencies, you can import from it directly:
 
 ```js
