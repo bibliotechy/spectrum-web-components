@@ -22,21 +22,7 @@
     "exports": {
         ".": "./src/index.js",
         "./src/*": "./src/*.js",
-        "./package.json": "./package.json",
-        "./sp-table-body": "./sp-table-body.js",
-        "./sp-table-body.js": "./sp-table-body.js",
-        "./sp-table-cell": "./sp-table-cell.js",
-        "./sp-table-cell.js": "./sp-table-cell.js",
-        "./sp-table-checkbox-cell": "./sp-table-checkbox-cell.js",
-        "./sp-table-checkbox-cell.js": "./sp-table-checkbox-cell.js",
-        "./sp-table-head": "./sp-table-head.js",
-        "./sp-table-head.js": "./sp-table-head.js",
-        "./sp-table-head-cell": "./sp-table-head-cell.js",
-        "./sp-table-head-cell.js": "./sp-table-head-cell.js",
-        "./sp-table-row": "./sp-table-row.js",
-        "./sp-table-row.js": "./sp-table-row.js",
-        "./sp-table": "./sp-table.js",
-        "./sp-table.js": "./sp-table.js"
+        "./package.json": "./package.json"
     },
     "scripts": {
         "test": "echo \"Error: run tests from mono-repo root.\" && exit 1"

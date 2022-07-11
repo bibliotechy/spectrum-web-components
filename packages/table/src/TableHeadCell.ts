@@ -37,6 +37,8 @@ const ariaSortValue = (sortDirection?: 'asc' | 'desc'): string => {
 
 /**
  * @element sp-table
+ *
+ * @fires sorted - Announces that the table head has been sorted and handles the sorted event
  */
 export class TableHeadCell extends SpectrumElement {
     public static override get styles(): CSSResultArray {

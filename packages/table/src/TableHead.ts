@@ -23,6 +23,7 @@ import styles from './table-head.css.js';
 
 /**
  * @element sp-table
+ *
  */
 export class TableHead extends SpectrumElement {
     public static override get styles(): CSSResultArray {
@@ -37,7 +38,6 @@ export class TableHead extends SpectrumElement {
 
     private handleSorted({ target }: Event): void {
         const childCells = [...this.children] as TableHeadCell[];
-        // Not sure this is in the right place.
         childCells.forEach((cell) => {
             if (cell !== target) {
                 cell.sortDirection = undefined;

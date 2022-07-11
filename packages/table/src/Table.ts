@@ -32,6 +32,7 @@ interface Range {
 }
 
 export class RangeChangedEvent extends Event {
+    // This does not work. See https://github.com/lit/lit/issues/3051 for more info.
     static eventName = 'rangeChanged';
 
     first: number;
@@ -46,6 +47,9 @@ export class RangeChangedEvent extends Event {
 
 /**
  * @element sp-table
+ *
+ * @event rangeChanged - Announces a change in the range of visible cells on the table body
+ * @event change - Announces a change in the `selected` property of a table row
  */
 
 // when table doesn't have a scroller, it should be height auto and

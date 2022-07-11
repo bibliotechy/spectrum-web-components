@@ -25,6 +25,8 @@ import { TableCheckboxCell } from './TableCheckboxCell.js';
 
 /**
  * @element sp-table
+ *
+ * @fires sorted - Announces that `selected` of the table row has changed
  */
 export class TableRow extends SpectrumElement {
     public static override get styles(): CSSResultArray {
