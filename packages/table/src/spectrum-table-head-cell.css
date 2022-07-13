@@ -90,58 +90,58 @@ governing permissions and limitations under the License.
 :host([dir='ltr']) .spectrum-Table-headCell.focus-visible:before,
 :host([dir='ltr'][focused]) .spectrum-Table-headCell:before {
     right: 0; /* [dir=ltr] .spectrum-Table-cell.focus-ring:before,
-   * [dir=ltr]  .spectrum-Table-cell.is-focused::before,
-   * [dir=ltr]  .spectrum-Table-headCell.focus-ring::before,
-   * [dir=ltr]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=ltr] .spectrum-Table-cell.is-focused::before,
+   * [dir=ltr] .spectrum-Table-headCell.focus-ring::before,
+   * [dir=ltr] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='ltr']) .spectrum-Table-headCell:focus-visible:before,
 :host([dir='ltr'][focused]) .spectrum-Table-headCell:before {
     right: 0; /* [dir=ltr] .spectrum-Table-cell.focus-ring:before,
-   * [dir=ltr]  .spectrum-Table-cell.is-focused::before,
-   * [dir=ltr]  .spectrum-Table-headCell.focus-ring::before,
-   * [dir=ltr]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=ltr] .spectrum-Table-cell.is-focused::before,
+   * [dir=ltr] .spectrum-Table-headCell.focus-ring::before,
+   * [dir=ltr] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='rtl']) .spectrum-Table-headCell.focus-visible:before,
 :host([dir='rtl'][focused]) .spectrum-Table-headCell:before {
     left: 0; /* [dir=rtl] .spectrum-Table-cell.focus-ring:before,
-   * [dir=rtl]  .spectrum-Table-cell.is-focused::before,
-   * [dir=rtl]  .spectrum-Table-headCell.focus-ring::before,
-   * [dir=rtl]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=rtl] .spectrum-Table-cell.is-focused::before,
+   * [dir=rtl] .spectrum-Table-headCell.focus-ring::before,
+   * [dir=rtl] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='rtl']) .spectrum-Table-headCell:focus-visible:before,
 :host([dir='rtl'][focused]) .spectrum-Table-headCell:before {
     left: 0; /* [dir=rtl] .spectrum-Table-cell.focus-ring:before,
-   * [dir=rtl]  .spectrum-Table-cell.is-focused::before,
-   * [dir=rtl]  .spectrum-Table-headCell.focus-ring::before,
-   * [dir=rtl]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=rtl] .spectrum-Table-cell.is-focused::before,
+   * [dir=rtl] .spectrum-Table-headCell.focus-ring::before,
+   * [dir=rtl] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='ltr']) .spectrum-Table-headCell.focus-visible:before,
 :host([dir='ltr'][focused]) .spectrum-Table-headCell:before {
     left: 0; /* [dir=ltr] .spectrum-Table-cell.focus-ring:before,
-   * [dir=ltr]  .spectrum-Table-cell.is-focused::before,
-   * [dir=ltr]  .spectrum-Table-headCell.focus-ring::before,
-   * [dir=ltr]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=ltr] .spectrum-Table-cell.is-focused::before,
+   * [dir=ltr] .spectrum-Table-headCell.focus-ring::before,
+   * [dir=ltr] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='ltr']) .spectrum-Table-headCell:focus-visible:before,
 :host([dir='ltr'][focused]) .spectrum-Table-headCell:before {
     left: 0; /* [dir=ltr] .spectrum-Table-cell.focus-ring:before,
-   * [dir=ltr]  .spectrum-Table-cell.is-focused::before,
-   * [dir=ltr]  .spectrum-Table-headCell.focus-ring::before,
-   * [dir=ltr]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=ltr] .spectrum-Table-cell.is-focused::before,
+   * [dir=ltr] .spectrum-Table-headCell.focus-ring::before,
+   * [dir=ltr] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='rtl']) .spectrum-Table-headCell.focus-visible:before,
 :host([dir='rtl'][focused]) .spectrum-Table-headCell:before {
     right: 0; /* [dir=rtl] .spectrum-Table-cell.focus-ring:before,
-   * [dir=rtl]  .spectrum-Table-cell.is-focused::before,
-   * [dir=rtl]  .spectrum-Table-headCell.focus-ring::before,
-   * [dir=rtl]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=rtl] .spectrum-Table-cell.is-focused::before,
+   * [dir=rtl] .spectrum-Table-headCell.focus-ring::before,
+   * [dir=rtl] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='rtl']) .spectrum-Table-headCell:focus-visible:before,
 :host([dir='rtl'][focused]) .spectrum-Table-headCell:before {
     right: 0; /* [dir=rtl] .spectrum-Table-cell.focus-ring:before,
-   * [dir=rtl]  .spectrum-Table-cell.is-focused::before,
-   * [dir=rtl]  .spectrum-Table-headCell.focus-ring::before,
-   * [dir=rtl]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=rtl] .spectrum-Table-cell.is-focused::before,
+   * [dir=rtl] .spectrum-Table-headCell.focus-ring::before,
+   * [dir=rtl] .spectrum-Table-headCell.is-focused::before */
 }
 :host(.focus-visible):before,
 :host([focused]):before {
@@ -176,56 +176,56 @@ governing permissions and limitations under the License.
     right: var(
         --spectrum-table-regular-border-size
     ); /* [dir=ltr] .spectrum-Table-headCell.focus-ring:before,
-   * [dir=ltr]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=ltr] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='ltr']:focus-visible):before,
 :host([dir='ltr'][focused]) .spectrum-Table-headCell:before {
     right: var(
         --spectrum-table-regular-border-size
     ); /* [dir=ltr] .spectrum-Table-headCell.focus-ring:before,
-   * [dir=ltr]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=ltr] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='rtl'].focus-visible):before,
 :host([dir='rtl'][focused]) .spectrum-Table-headCell:before {
     left: var(
         --spectrum-table-regular-border-size
     ); /* [dir=rtl] .spectrum-Table-headCell.focus-ring:before,
-   * [dir=rtl]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=rtl] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='rtl']:focus-visible):before,
 :host([dir='rtl'][focused]) .spectrum-Table-headCell:before {
     left: var(
         --spectrum-table-regular-border-size
     ); /* [dir=rtl] .spectrum-Table-headCell.focus-ring:before,
-   * [dir=rtl]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=rtl] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='ltr'].focus-visible):before,
 :host([dir='ltr'][focused]) .spectrum-Table-headCell:before {
     left: var(
         --spectrum-table-regular-border-size
     ); /* [dir=ltr] .spectrum-Table-headCell.focus-ring:before,
-   * [dir=ltr]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=ltr] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='ltr']:focus-visible):before,
 :host([dir='ltr'][focused]) .spectrum-Table-headCell:before {
     left: var(
         --spectrum-table-regular-border-size
     ); /* [dir=ltr] .spectrum-Table-headCell.focus-ring:before,
-   * [dir=ltr]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=ltr] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='rtl'].focus-visible):before,
 :host([dir='rtl'][focused]) .spectrum-Table-headCell:before {
     right: var(
         --spectrum-table-regular-border-size
     ); /* [dir=rtl] .spectrum-Table-headCell.focus-ring:before,
-   * [dir=rtl]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=rtl] .spectrum-Table-headCell.is-focused::before */
 }
 :host([dir='rtl']:focus-visible):before,
 :host([dir='rtl'][focused]) .spectrum-Table-headCell:before {
     right: var(
         --spectrum-table-regular-border-size
     ); /* [dir=rtl] .spectrum-Table-headCell.focus-ring:before,
-   * [dir=rtl]  .spectrum-Table-headCell.is-focused::before */
+   * [dir=rtl] .spectrum-Table-headCell.is-focused::before */
 }
 :host(.focus-visible):before,
 :host([focused]):before {
