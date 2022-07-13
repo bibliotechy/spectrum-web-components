@@ -52,6 +52,16 @@ export class TableCheckboxCell extends SpectrumElement {
     @property({ type: Boolean, reflect: true, attribute: 'selects-single' })
     public selectsSingle = false;
 
+    protected handleChange(): void {
+        this.dispatchEvent(
+            new Event('change', {
+                bubbles: true,
+                cancelable: true,
+                composed: true,
+            })
+        );
+    }
+
     protected override render(): TemplateResult {
         return html`
             <sp-checkbox
@@ -59,15 +69,7 @@ export class TableCheckboxCell extends SpectrumElement {
                 ?indeterminate=${this.indeterminate}
                 ?disabled=${this.disabled}
                 aria-hidden=${ifDefined(this.selectsSingle)}
-                @change=${() => {
-                    this.dispatchEvent(
-                        new Event('change', {
-                            bubbles: true,
-                            cancelable: true,
-                            composed: true,
-                        })
-                    );
-                }}
+                @change=${this.handleChange}
                 class="checkbox"
             ></sp-checkbox>
         `;

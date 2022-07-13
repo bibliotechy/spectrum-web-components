@@ -57,9 +57,6 @@ export class TableHeadCell extends SpectrumElement {
     @property({ attribute: 'sort-key' })
     public sortKey = '';
 
-    @property({ type: Number, reflect: true })
-    public override tabIndex = -1;
-
     protected handleClick(): void {
         if (!this.sortable) return;
         if (this.sortDirection) {
