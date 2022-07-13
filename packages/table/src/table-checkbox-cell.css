@@ -13,7 +13,8 @@ governing permissions and limitations under the License.
 @import './spectrum-table-checkbox-cell.css';
 
 :host {
-    display: block;
+    display: flex;
+    align-items: center;
     flex: 0 1 0%;
 }
 

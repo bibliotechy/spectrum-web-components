@@ -368,13 +368,12 @@ describe('Table', () => {
 
         expect(el.selected.length).to.equal(2);
 
-        const rowThree = el.querySelector('.row3') as TableRow;
-        const rowTwo = el.querySelector('.row2') as TableRow;
-        const rowTwoCheckbox = rowTwo.querySelector('sp-table-checkbox-cell');
+        const rows = el.querySelectorAll('sp-table-row');
 
-        expect(rowThree.selected, 'third row selected').to.be.false;
-        expect(rowTwo.selected, 'second row selected').to.be.true;
-        expect(rowTwoCheckbox).to.be.null;
+        rows.forEach((row) => {
+            const checkbox = row.querySelector('sp-table-checkbox-cell');
+            expect(checkbox).to.be.null;
+        });
     });
 
     it('allows .selected values to be changed by the application when [selects="multiple"]', async () => {

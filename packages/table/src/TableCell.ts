@@ -30,9 +30,6 @@ export class TableCell extends SpectrumElement {
     @property({ reflect: true })
     public role = 'gridcell';
 
-    @property({ type: Number, reflect: true })
-    public override tabIndex = -1;
-
     protected override render(): TemplateResult {
         return html`
             <slot></slot>

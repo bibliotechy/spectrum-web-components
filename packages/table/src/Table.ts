@@ -1,4 +1,4 @@
-/* TABLE
+/*
 Copyright 2022 Adobe. All rights reserved.
 This file is licensed to you under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License. You may obtain a copy
@@ -9,6 +9,7 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTA
 OF ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under the License.
 */
+
 import {
     CSSResultArray,
     html,
@@ -17,13 +18,15 @@ import {
     SpectrumElement,
     TemplateResult,
 } from '@spectrum-web-components/base';
+import '../sp-table-row.js';
+import '../sp-table-checkbox-cell.js';
 import { property } from '@spectrum-web-components/base/src/decorators.js';
 import styles from './table.css.js';
 import { TableBody } from './TableBody.js';
-import { TableCheckboxCell } from './TableCheckboxCell.js';
-import { TableHead } from './TableHead.js';
+import type { TableCheckboxCell } from './TableCheckboxCell.js';
+import type { TableHead } from './TableHead.js';
 import type { TableHeadCell } from './TableHeadCell.js';
-import { TableRow } from './TableRow.js';
+import type { TableRow } from './TableRow.js';
 import { virtualize } from '@lit-labs/virtualizer/virtualize.js';
 
 interface Range {
@@ -116,12 +119,23 @@ export class Table extends SpectrumElement {
 
     @property({ type: Object })
     public itemValue = (_item: unknown, index: number): string => {
-        return '' + index;
+        return `${index}`;
     };
 
     private tableBody?: TableBody;
 
     private tableHeadCheckboxCell?: TableCheckboxCell;
+
+    private get tableHead(): TableHead {
+        return this.querySelector('sp-table-head') as TableHead;
+    }
+
+    private get tableRows(): TableRow[] {
+        if (this.isVirtualized) {
+            return [];
+        }
+        return [...this.querySelectorAll('sp-table-row')] as TableRow[];
+    }
 
     private get isVirtualized(): boolean {
         return !!this.items.length;
@@ -143,10 +157,7 @@ export class Table extends SpectrumElement {
             });
             this.selected = [...this.selectedSet];
         } else {
-            const tableRows = [
-                ...this.querySelectorAll('sp-table-row'),
-            ] as TableRow[];
-            tableRows.forEach((row) => {
+            this.tableRows.forEach((row) => {
                 row.selected = true; // Visually
                 this.selectedSet.add(row.value); // Prepares table state
             });
@@ -178,9 +189,8 @@ export class Table extends SpectrumElement {
     }
 
     protected manageSelects(): void {
-        const tableHead = this.querySelector('sp-table-head') as TableHead;
         const checkboxes = this.querySelectorAll('sp-table-checkbox-cell');
-
+        const checkbox = document.createElement('sp-table-checkbox-cell');
         if (!!this.selects) {
             let allSelected = false;
             if (this.isVirtualized) {
@@ -188,38 +198,28 @@ export class Table extends SpectrumElement {
                     this.selected.length > 0 &&
                     this.selected.length === this.items.length;
             } else {
-                const tableRows = [
-                    ...this.querySelectorAll('sp-table-row'),
-                ] as TableRow[];
-
-                tableRows.forEach((row) => {
+                this.tableRows.forEach((row) => {
                     row.selected = this.selectedSet.has(row.value);
-                    if (!checkboxes || checkboxes.length < 1) {
-                        const checkbox = document.createElement(
-                            'sp-table-checkbox-cell'
-                        );
-                        row.insertAdjacentElement('afterbegin', checkbox);
+                    if (!row.querySelector(':scope > sp-table-checkbox-cell')) {
+                        const clonedCheckbox =
+                            checkbox.cloneNode() as TableCheckboxCell;
+                        row.insertAdjacentElement('afterbegin', clonedCheckbox);
                         checkbox.checked = row.selected;
                     }
                 });
-
-                allSelected = this.selected.length === tableRows.length;
+                allSelected = this.selected.length === this.tableRows.length;
             }
 
             if (!this.tableHeadCheckboxCell) {
                 this.tableHeadCheckboxCell = document.createElement(
                     'sp-table-checkbox-cell'
                 ) as TableCheckboxCell;
-                tableHead.insertAdjacentElement(
+                this.tableHead.insertAdjacentElement(
                     'afterbegin',
                     this.tableHeadCheckboxCell
                 );
             }
-            this.tableHeadCheckboxCell.selectsSingle =
-                this.selects === 'single';
-            this.tableHeadCheckboxCell.checked = allSelected;
-            this.tableHeadCheckboxCell.indeterminate =
-                this.selected.length > 0 && !allSelected;
+            this.manageHeadCheckbox(allSelected);
         } else {
             checkboxes.forEach((box) => {
                 box.remove();
@@ -231,46 +231,32 @@ export class Table extends SpectrumElement {
     protected manageSelected(): void {
         this.selectedSet = new Set(this.selected);
 
-        if (!this.isVirtualized) {
-            const rows = [
-                ...this.querySelectorAll('sp-table-row'),
-            ] as TableRow[];
+        if (this.isVirtualized) return;
 
-            rows.forEach((row) => {
-                row.selected = this.selectedSet.has(row.value);
-            });
-            if (this.tableHeadCheckboxCell)
-                this.tableHeadCheckboxCell.checked =
-                    this.selected.length === rows.length;
+        this.tableRows.forEach((row) => {
+            row.selected = this.selectedSet.has(row.value);
+        });
+        if (this.tableHeadCheckboxCell) {
+            this.tableHeadCheckboxCell.checked =
+                this.selected.length === this.tableRows.length;
         }
     }
 
     protected manageCheckboxes(): void {
-        const tableRows = [
-            ...this.querySelectorAll('sp-table-row'),
-        ] as TableRow[];
-        const tableHead = this.querySelector('sp-table-head') as TableHead;
-
         if (!!this.selects) {
             this.tableHeadCheckboxCell = document.createElement(
                 'sp-table-checkbox-cell'
             );
-            const allSelected = this.selected.length === tableRows.length;
+            const allSelected = this.selected.length === this.tableRows.length;
 
-            if (this.tableHeadCheckboxCell) {
-                this.tableHeadCheckboxCell.selectsSingle =
-                    this.selects === 'single';
-                this.tableHeadCheckboxCell.checked = allSelected;
-                this.tableHeadCheckboxCell.indeterminate =
-                    this.selected.length > 0 && !allSelected;
-            }
+            this.manageHeadCheckbox(allSelected);
 
-            tableHead.insertAdjacentElement(
+            this.tableHead.insertAdjacentElement(
                 'afterbegin',
                 this.tableHeadCheckboxCell
             );
 
-            tableRows.forEach((row) => {
+            this.tableRows.forEach((row) => {
                 const checkbox = document.createElement(
                     'sp-table-checkbox-cell'
                 );
@@ -279,14 +265,23 @@ export class Table extends SpectrumElement {
                 checkbox.checked = row.selected;
             });
         } else {
-            tableHead.querySelector('sp-table-checkbox-cell')?.remove();
-            tableRows.forEach((row) => {
+            this.tableHead.querySelector('sp-table-checkbox-cell')?.remove();
+            this.tableRows.forEach((row) => {
                 row.checkboxCells[0]?.remove();
                 if (this.selected.length) {
                     row.selected = this.selectedSet.has(row.value);
                 }
             });
         }
+    }
+
+    protected manageHeadCheckbox(allSelected: boolean): void {
+        if (!this.tableHeadCheckboxCell) return;
+
+        this.tableHeadCheckboxCell.selectsSingle = this.selects === 'single';
+        this.tableHeadCheckboxCell.checked = allSelected;
+        this.tableHeadCheckboxCell.indeterminate =
+            this.selected.length > 0 && !allSelected;
     }
 
     protected handleChange(event: Event): void {
@@ -321,12 +316,8 @@ export class Table extends SpectrumElement {
                     }
                     this.selected = [...this.selectedSet];
 
-                    const tableRows = [
-                        ...this.querySelectorAll('sp-table-row'),
-                    ] as TableRow[];
-
                     const allSelected =
-                        this.selected.length === tableRows.length;
+                        this.selected.length === this.tableRows.length;
 
                     if (!this.tableHeadCheckboxCell) return;
                     this.tableHeadCheckboxCell.checked = allSelected;
@@ -371,10 +362,7 @@ export class Table extends SpectrumElement {
                     rowValues.add(value);
                 });
             } else {
-                const tableRows = [
-                    ...this.querySelectorAll('sp-table-row'),
-                ] as TableRow[];
-                tableRows.forEach((row) => {
+                this.tableRows.forEach((row) => {
                     rowValues.add(row.value);
                 });
             }
@@ -419,11 +407,9 @@ export class Table extends SpectrumElement {
                 this.tableBody = document.createElement('sp-table-body');
                 this.append(this.tableBody);
             }
-            // TODO: query Lit team about the `e.stopPropagation()` that happens here.
             this.tableBody.addEventListener(
                 'rangeChanged',
                 (event: RangeChangedEvent) => {
-                    // console.log('rangeChanged');
                     this.dispatchEvent(
                         new RangeChangedEvent({
                             first: event.first,

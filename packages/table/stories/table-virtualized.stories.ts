@@ -187,7 +187,7 @@ export const virtualizedSingle = (args: Properties): TemplateResult => {
                 <sp-table-head-cell>Column Title</sp-table-head-cell>
             </sp-table-head>
         </sp-table>
-        <div>Selected: ["0"]</div>
+        <div>Selected: ["49"]</div>
     `;
 };
 virtualizedSingle.args = {
