@@ -50,69 +50,69 @@ governing permissions and limitations under the License.
    * .spectrum-Table-headCell */
 }
 :host(.focus-visible),
-:host(.is-focused) {
+:host([focused]) {
     outline: none; /* .spectrum-Table-cell.focus-ring,
-   * .spectrum-Table-cell.is-focused,
+   * .spectrum-Table-cell[focused],
    * .spectrum-Table-headCell.focus-ring,
    * .spectrum-Table-headCell.is-focused */
 }
-:host(.is-focused),
+:host([focused]),
 :host(:focus-visible) {
     outline: none; /* .spectrum-Table-cell.focus-ring,
    * .spectrum-Table-cell.is-focused,
    * .spectrum-Table-headCell.focus-ring,
    * .spectrum-Table-headCell.is-focused */
 }
-:host([dir='ltr']) .spectrum-Table-cell.is-focused:before,
+:host([dir='ltr']) .spectrum-Table-cell[focused]:before,
 :host([dir='ltr'].focus-visible):before {
     right: 0; /* [dir=ltr] .spectrum-Table-cell.focus-ring:before,
    * [dir=ltr]  .spectrum-Table-cell.is-focused::before,
    * [dir=ltr]  .spectrum-Table-headCell.focus-ring::before,
    * [dir=ltr]  .spectrum-Table-headCell.is-focused::before */
 }
-:host([dir='ltr']) .spectrum-Table-cell.is-focused:before,
+:host([dir='ltr']) .spectrum-Table-cell[focused]:before,
 :host([dir='ltr']:focus-visible):before {
     right: 0; /* [dir=ltr] .spectrum-Table-cell.focus-ring:before,
    * [dir=ltr]  .spectrum-Table-cell.is-focused::before,
    * [dir=ltr]  .spectrum-Table-headCell.focus-ring::before,
    * [dir=ltr]  .spectrum-Table-headCell.is-focused::before */
 }
-:host([dir='rtl']) .spectrum-Table-cell.is-focused:before,
+:host([dir='rtl']) .spectrum-Table-cell[focused]:before,
 :host([dir='rtl'].focus-visible):before {
     left: 0; /* [dir=rtl] .spectrum-Table-cell.focus-ring:before,
    * [dir=rtl]  .spectrum-Table-cell.is-focused::before,
    * [dir=rtl]  .spectrum-Table-headCell.focus-ring::before,
    * [dir=rtl]  .spectrum-Table-headCell.is-focused::before */
 }
-:host([dir='rtl']) .spectrum-Table-cell.is-focused:before,
+:host([dir='rtl']) .spectrum-Table-cell[focused]:before,
 :host([dir='rtl']:focus-visible):before {
     left: 0; /* [dir=rtl] .spectrum-Table-cell.focus-ring:before,
    * [dir=rtl]  .spectrum-Table-cell.is-focused::before,
    * [dir=rtl]  .spectrum-Table-headCell.focus-ring::before,
    * [dir=rtl]  .spectrum-Table-headCell.is-focused::before */
 }
-:host([dir='ltr']) .spectrum-Table-cell.is-focused:before,
+:host([dir='ltr']) .spectrum-Table-cell[focused]:before,
 :host([dir='ltr'].focus-visible):before {
     left: 0; /* [dir=ltr] .spectrum-Table-cell.focus-ring:before,
    * [dir=ltr]  .spectrum-Table-cell.is-focused::before,
    * [dir=ltr]  .spectrum-Table-headCell.focus-ring::before,
    * [dir=ltr]  .spectrum-Table-headCell.is-focused::before */
 }
-:host([dir='ltr']) .spectrum-Table-cell.is-focused:before,
+:host([dir='ltr']) .spectrum-Table-cell[focused]:before,
 :host([dir='ltr']:focus-visible):before {
     left: 0; /* [dir=ltr] .spectrum-Table-cell.focus-ring:before,
    * [dir=ltr]  .spectrum-Table-cell.is-focused::before,
    * [dir=ltr]  .spectrum-Table-headCell.focus-ring::before,
    * [dir=ltr]  .spectrum-Table-headCell.is-focused::before */
 }
-:host([dir='rtl']) .spectrum-Table-cell.is-focused:before,
+:host([dir='rtl']) .spectrum-Table-cell[focused]:before,
 :host([dir='rtl'].focus-visible):before {
     right: 0; /* [dir=rtl] .spectrum-Table-cell.focus-ring:before,
    * [dir=rtl]  .spectrum-Table-cell.is-focused::before,
    * [dir=rtl]  .spectrum-Table-headCell.focus-ring::before,
    * [dir=rtl]  .spectrum-Table-headCell.is-focused::before */
 }
-:host([dir='rtl']) .spectrum-Table-cell.is-focused:before,
+:host([dir='rtl']) .spectrum-Table-cell[focused]:before,
 :host([dir='rtl']:focus-visible):before {
     right: 0; /* [dir=rtl] .spectrum-Table-cell.focus-ring:before,
    * [dir=rtl]  .spectrum-Table-cell.is-focused::before,
@@ -120,7 +120,7 @@ governing permissions and limitations under the License.
    * [dir=rtl]  .spectrum-Table-headCell.is-focused::before */
 }
 :host(.focus-visible):before,
-:host(.is-focused):before {
+:host([focused]):before {
     border-radius: calc(
         var(--spectrum-table-regular-cell-border-radius-key-focus) - 1px
     );
@@ -133,7 +133,7 @@ governing permissions and limitations under the License.
     top: 0;
     z-index: 1;
 }
-:host(.is-focused):before,
+:host([focused]):before,
 :host(:focus-visible):before {
     border-radius: calc(
         var(--spectrum-table-regular-cell-border-radius-key-focus) - 1px
@@ -158,7 +158,7 @@ governing permissions and limitations under the License.
     ); /* [dir=rtl] .spectrum-Table-cell--divider */
 }
 :host(.focus-visible):before,
-:host(.is-focused):before {
+:host([focused]):before {
     box-shadow: inset 0 0 0 2px
         var(
             --spectrum-table-m-regular-cell-border-color-key-focus,
@@ -168,7 +168,7 @@ governing permissions and limitations under the License.
    * .spectrum-Table-headCell.focus-ring::before,
    * .spectrum-Table-headCell.is-focused::before */
 }
-:host(.is-focused):before,
+:host([focused]):before,
 :host(:focus-visible):before {
     box-shadow: inset 0 0 0 2px
         var(
